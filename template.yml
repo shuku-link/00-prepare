@@ -40,6 +40,11 @@ Resources:
         Name: LockID
         Type: String
 
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: shuku.link
+
 Outputs:
   TableNameTerraformLocks:
     Value: !Ref TableTerraformLocks
@@ -49,3 +54,9 @@ Outputs:
 
   RoleArnGithubActionsAdministrator:
     Value: !GetAtt RoleGithubActionsAdministrator.Arn
+
+  IdHostedZone:
+    Value: !Ref HostedZone
+
+  NameServersHostedZone:
+    Value: !Join [", ", !GetAtt HostedZone.NameServers]
